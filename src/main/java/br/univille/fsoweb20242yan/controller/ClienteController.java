@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.Cliente;
 import br.univille.fsoweb20242yan.service.ClienteService;
-import br.univille.fsoweb20242yan.service.ClienteRepository
 
 @Controller
 @RequestMapping("/clientes")
@@ -26,6 +25,7 @@ public class ClienteController {
         //montar a tela com os dados banco
         return new ModelAndView("cliente/index",
                 "listaClientes",listaClientes);
+
     }
 
     @GetMapping("/novo")
