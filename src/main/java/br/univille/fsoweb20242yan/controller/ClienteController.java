@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.Cliente;
+import br.univille.fsoweb20242yan.repository.ClienteRepository;
 import br.univille.fsoweb20242yan.service.ClienteService;
 
 @Controller
 @RequestMapping("/clientes")
-public class ClienteController {
+public class ClienteController { 
 
     @Autowired
     private ClienteService service;
@@ -25,7 +26,6 @@ public class ClienteController {
         //montar a tela com os dados banco
         return new ModelAndView("cliente/index",
                 "listaClientes",listaClientes);
-
     }
 
     @GetMapping("/novo")
