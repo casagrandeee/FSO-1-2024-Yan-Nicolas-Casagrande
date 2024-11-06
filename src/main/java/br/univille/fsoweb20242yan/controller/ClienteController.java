@@ -1,5 +1,7 @@
 package br.univille.fsoweb20242yan.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,14 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.Cliente;
 import br.univille.fsoweb20242yan.repository.ClienteRepository;
+import br.univille.fsoweb20242yan.service.CidadeService;
 import br.univille.fsoweb20242yan.service.ClienteService;
 
 @Controller
 @RequestMapping("/clientes")
-public class ClienteController { 
+public class ClienteController {
 
     @Autowired
     private ClienteService service;
+    @Autowired
+    private CidadeService cidadeService;
 
     @GetMapping
     public ModelAndView index(){
@@ -31,9 +36,15 @@ public class ClienteController {
     @GetMapping("/novo")
     public ModelAndView novo(){
         var cliente = new Cliente();
+        var listaCidades = cidadeService.getAll();
+
+        HashMap<String,Object> dados = 
+            new HashMap<>();
+        dados.put("cliente",cliente);
+        dados.put("listaCidades",listaCidades);
         
         return new ModelAndView("cliente/form", 
-                    "cliente",cliente);
+                    dados);
 
     }
     @PostMapping
@@ -45,9 +56,13 @@ public class ClienteController {
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
         var umCliente = service.getById(id);
+        var listaCidades = cidadeService.getAll();
 
-        return new ModelAndView("cliente/form", 
-                    "cliente",umCliente);
+        HashMap<String,Object> dados = new HashMap<>();
+        dados.put("cliente",umCliente);
+        dados.put("listaCidades",listaCidades);
+
+        return new ModelAndView("cliente/form", dados);
     }
 
     @GetMapping("/delete/{id}")
