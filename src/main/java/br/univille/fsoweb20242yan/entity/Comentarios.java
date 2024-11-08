@@ -1,5 +1,7 @@
 package br.univille.fsoweb20242yan.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,10 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.time.LocalDateTime;
-
 @Entity
-public class Comentarios {
+public class Comentarios extends Object{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

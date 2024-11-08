@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #343a40;
+    padding: 1rem;
+}
+
+header .navbar-brand {
+    color: #ffffff;
+}
+
+header .nav-link {
+    color: #ffffff;
+}
+
+main {
+    padding: 2rem;
+}
+
+h1, h2 {
+    color: #343a40;
+}
+
+.alert {
+    margin-top: 1rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

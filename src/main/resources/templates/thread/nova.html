@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Criar Nova Thread</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Criar Nova Thread</h2>
+    <form th:action="@{/threads/salvar}" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Salvar</button>
+    </form>
+</div>
+</body>
+</html>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.Cliente;
-import br.univille.fsoweb20242yan.repository.ClienteRepository;
 import br.univille.fsoweb20242yan.service.CidadeService;
 import br.univille.fsoweb20242yan.service.ClienteService;
 

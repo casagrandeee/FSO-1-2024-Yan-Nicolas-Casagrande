@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Novo Comentário</title>
+</head>
+<body>
+    <h1>Adicionar Comentário</h1>
+    <form th:action="@{'/threads/' + ${threadId} + '/comentarios/salvar'}" method="post">
+        <textarea name="conteudo" placeholder="Digite seu comentário aqui"></textarea>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

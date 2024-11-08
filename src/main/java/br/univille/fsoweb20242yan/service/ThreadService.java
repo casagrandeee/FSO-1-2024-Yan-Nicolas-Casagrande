@@ -1,10 +1,10 @@
 package br.univille.fsoweb20242yan.service;
 
-import br.univille.fsoweb20242yan.entities.Thread;
-import br.univille.fsoweb20242yan.entities.Comentario;
-
 import java.util.List;
 import java.util.Optional;
+
+import br.univille.fsoweb20242yan.entity.Comentarios;
+import br.univille.fsoweb20242yan.entity.Thread;
 
 public interface ThreadService {
 
@@ -14,9 +14,9 @@ public interface ThreadService {
 
     List<Thread> listarTodasThreads();
 
-    Comentario adicionarComentario(Long threadId, String conteudo);
+    Comentarios adicionarComentario(Long threadId, String conteudo);
 
-    List<Comentario> buscarComentariosPorThread(Long threadId);
+    List<Comentarios> buscarComentariosPorThread(Long threadId);
 
     void deletarThread(Long threadId);
 
@@ -24,5 +24,5 @@ public interface ThreadService {
 
     Thread atualizarThread(Long threadId, String novoTitulo);
 
-    Comentario atualizarComentario(Long comentarioId, String novoConteudo);
+    Comentarios atualizarComentario(Long comentarioId, String novoConteudo);
 }

@@ -1,16 +1,17 @@
 package br.univille.fsoweb20242yan.service.impl;
 
-import br.univille.fsoweb20242yan.entities.Thread;
-import br.univille.fsoweb20242yan.entities.Comentario;
-import br.univille.fsoweb20242yan.repositories.ThreadRepository;
-import br.univille.fsoweb20242yan.repositories.ComentarioRepository;
-import br.univille.fsoweb20242yan.service.ThreadService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.univille.fsoweb20242yan.entity.Comentarios;
+import br.univille.fsoweb20242yan.entity.Thread;
+import br.univille.fsoweb20242yan.repository.ComentarioRepository;
+import br.univille.fsoweb20242yan.repository.ThreadRepository;
+import br.univille.fsoweb20242yan.service.ThreadService;
 
 @Service
 public class ThreadServiceImpl implements ThreadService {
@@ -39,11 +40,11 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Comentario adicionarComentario(Long threadId, String conteudo) {
+    public Comentarios adicionarComentario(Long threadId, String conteudo) {
         Thread thread = threadRepository.findById(threadId)
                 .orElseThrow(() -> new RuntimeException("Thread não encontrada"));
 
-        Comentario comentario = new Comentario();
+        Comentarios comentario = new Comentarios();
         comentario.setConteudo(conteudo);
         comentario.setDataCriacao(LocalDateTime.now());
         comentario.setThread(thread);
@@ -52,7 +53,7 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public List<Comentario> buscarComentariosPorThread(Long threadId) {
+    public List<Comentarios> buscarComentariosPorThread(Long threadId) {
         Thread thread = threadRepository.findById(threadId)
                 .orElseThrow(() -> new RuntimeException("Thread não encontrada"));
         return thread.getComentarios();
@@ -67,7 +68,7 @@ public class ThreadServiceImpl implements ThreadService {
 
     @Override
     public void deletarComentario(Long comentarioId) {
-        Comentario comentario = comentarioRepository.findById(comentarioId)
+        Comentarios comentario = comentarioRepository.findById(comentarioId)
                 .orElseThrow(() -> new RuntimeException("Comentario não encontrado"));
         comentarioRepository.delete(comentario);
     }
@@ -81,8 +82,8 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Comentario atualizarComentario(Long comentarioId, String novoConteudo) {
-        Comentario comentario = comentarioRepository.findById(comentarioId)
+    public Comentarios atualizarComentario(Long comentarioId, String novoConteudo) {
+        Comentarios comentario = comentarioRepository.findById(comentarioId)
                 .orElseThrow(() -> new RuntimeException("Comentario não encontrado"));
         comentario.setConteudo(novoConteudo);
         comentario.setDataCriacao(LocalDateTime.now());

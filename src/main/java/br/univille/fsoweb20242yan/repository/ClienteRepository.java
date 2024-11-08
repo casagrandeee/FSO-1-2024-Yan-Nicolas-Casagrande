@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import br.univille.fsoweb20242yan.entity.Cliente;
 
 @Repository
-public interface ClienteRepository 
-        extends JpaRepository<Cliente,Long>{
+public interface ClienteRepository extends JpaRepository<Cliente,Long>{
 }
