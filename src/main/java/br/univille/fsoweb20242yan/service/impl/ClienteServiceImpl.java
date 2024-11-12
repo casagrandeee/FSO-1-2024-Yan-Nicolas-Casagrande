@@ -64,20 +64,24 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public String sugerirMetaNutricional(Cliente cliente) {
+        if (cliente == null) {
+            throw new IllegalArgumentException("Cliente não pode ser nulo.");
+        }
         int idade = calcularIdade(cliente);
-        double peso = cliente.getPeso();
-        double altura = cliente.getAltura();
-
-        int metaCalorica = (int) ((10 * peso) + (6.25 * altura) - (5 * idade) + 5);
+        int metaCalorica = calcularMetaCalorica(cliente.getPeso(), cliente.getAltura(), idade);
         cliente.setMetaCalorias(metaCalorica);
         repository.save(cliente);
-
+    
         return "Meta calórica sugerida: " + metaCalorica + " kcal";
+    }
+
+    private int calcularMetaCalorica(double peso, double altura, int idade) {
+        return (int) ((10 * peso) + (6.25 * altura) - (5 * idade) + 5);
     }
 
     private int calcularIdade(Cliente cliente) {
         if (cliente.getDataNascimento() == null) {
-            return 0;
+            throw new IllegalArgumentException("Data de nascimento não pode ser nula para calcular a idade."); 
         }
         LocalDate nascimento = cliente.getDataNascimento().toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -87,33 +91,37 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public PlanoAlimentar criarPlanoAlimentar(Cliente cliente, PlanoAlimentar planoAlimentar) {
+        if (cliente == null || planoAlimentar == null) {
+            throw new IllegalArgumentException("Cliente e Plano Alimentar não podem ser nulos.");
+        }
         planoAlimentar.setCliente(cliente);
         return planoAlimentarService.criarPlano(planoAlimentar);
     }
 
     @Override
     public Refeicao registrarRefeicao(Cliente cliente, Refeicao refeicao) {
+        if (cliente == null || refeicao == null) {
+            throw new IllegalArgumentException("Cliente e Refeição não podem ser nulos.");
+        }
         refeicao.setCliente(cliente);
         return refeicaoService.registrarRefeicao(refeicao);
     }
 
     @Override
     public PlanoAlimentar atualizarPlanoAlimentar(Cliente cliente) {
-        //Implementação para atualizar plano com base em metas e progresso
         PlanoAlimentar planoAtual = planoAlimentarService.obterPlanoPorCliente(cliente.getId());
-        if (planoAtual != null) {
-            planoAtual.setCaloriasDiarias(cliente.getMetaCalorias());
-            planoAtual.setCarboidratos(cliente.getMetaCarboidratos());
-            planoAtual.setProteinas(cliente.getMetaProteinas());
-            planoAtual.setGorduras(cliente.getMetaGorduras());
-            return planoAlimentarService.criarPlano(planoAtual);
+        if (planoAtual == null) {
+            throw new IllegalStateException("Nenhum plano alimentar encontrado para o cliente.");
         }
-        return null;
+        planoAtual.setCaloriasDiarias(cliente.getMetaCalorias());
+        planoAtual.setCarboidratos(cliente.getMetaCarboidratos());
+        planoAtual.setProteinas(cliente.getMetaProteinas());
+        planoAtual.setGorduras(cliente.getMetaGorduras());
+        return planoAlimentarService.criarPlano(planoAtual);
     }
 
     @Override
     public List<Receita> sugerirReceitas(Cliente cliente) {
-        //Usa o serviço de receita para buscar sugestões com base nas preferências
         return receitaService.sugerirReceitas(cliente.getPreferenciasAlimentares());
     }
 }

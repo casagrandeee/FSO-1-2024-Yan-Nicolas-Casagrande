@@ -16,6 +16,7 @@ public class Receita {
     private String ingredientes;
     private String instrucoes;
     private String tipo;
+    private String preferencias;
 
     public String getNome() {
         return nome;
@@ -47,5 +48,21 @@ public class Receita {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPreferencias() {
+        return preferencias;
+    }
+
+    public void setPreferencias(String preferencias) {
+        this.preferencias = preferencias;
     }
 }

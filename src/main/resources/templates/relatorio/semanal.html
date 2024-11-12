@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Semanal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Relatório Semanal</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Proteínas</th>
+                <th>Carboidratos</th>
+                <th>Gorduras</th>
+                <th>Calorias</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="refeicao : ${refeicoes}">
+                <td th:text="${refeicao.data}">01/01/2023</td>
+                <td th:text="${refeicao.proteinas}">10</td>
+                <td th:text="${refeicao.carboidratos}">20</td>
+                <td th:text="${refeicao.gorduras}">5</td>
+                <td th:text="${refeicao.calorias}">200</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Mensal</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Relatório Mensal</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Proteínas</th>
+                <th>Carboidratos</th>
+                <th>Gorduras</th>
+                <th>Calorias</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="semana : ${semanas}">
+                <td th:text="${semana.numero}">Semana 1</td>
+                <td th:text="${semana.totalProteinas}">100</td>
+                <td th:text="${semana.totalCarboidratos}">200</td>
+                <td th:text="${semana.totalGorduras}">50</td>
+                <td th:text="${semana.totalCalorias}">2000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

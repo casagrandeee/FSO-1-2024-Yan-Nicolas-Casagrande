@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relatório Diário</title>
+</head>
+<body>
+<h1>Relatório Diário de Consumo Nutricional</h1>
+<p>Calorias: <span th:text="${relatorio.totalCalorias}">0</span></p>
+<p>Proteínas: <span th:text="${relatorio.totalProteinas}">0</span></p>
+<p>Carboidratos: <span th:text="${relatorio.totalCarboidratos}">0</span></p>
+<p>Gorduras: <span th:text="${relatorio.totalGorduras}">0</span></p>
+<a href="/relatorio/semanal?clienteId=1">Ver Relatório Semanal</a> |
+<a href="/relatorio/mensal?clienteId=1">Ver Relatório Mensal</a>
+</body>
+</html>
