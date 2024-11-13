@@ -2,12 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Novo Comentário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Adicionar Comentário</h1>
-    <form th:action="@{'/threads/' + ${threadId} + '/comentarios/salvar'}" method="post">
-        <textarea name="conteudo" placeholder="Digite seu comentário aqui"></textarea>
-        <button type="submit">Salvar</button>
-    </form>
+    <header>
+        <h1>NUTRIWEB - Adicionar Comentário</h1>
+    </header>
+
+    <main>
+        <form th:action="@{'/threads/' + ${threadId} + '/comentarios/salvar'}" method="post" class="form-container">
+            <label for="conteudo">Comentário</label>
+            <textarea id="conteudo" name="conteudo" placeholder="Digite seu comentário aqui" required></textarea>
+            <button type="submit" class="btn-submit">Salvar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nutriweb</p>
+    </footer>
 </body>
 </html>

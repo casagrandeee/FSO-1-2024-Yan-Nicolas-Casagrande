@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,12 @@ public class ClienteController {
         //montar a tela com os dados banco
         return new ModelAndView("cliente/index",
                 "listaClientes",listaClientes);
+    }
+
+    @GetMapping("/cadastro")
+    public String showCadastroPage(ModelMap model) {
+        model.addAttribute("cliente", new Cliente()); // substitua com a classe Cliente adequada
+        return "cliente/form"; // Nome do template HTML, ajuste o caminho conforme necessário
     }
 
     @GetMapping("/novo")

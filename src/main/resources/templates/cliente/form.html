@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head th:include="layout :: htmlhead"></head>
-    <body>
-        
-        <nav th:replace="layout :: menu">(menu)</nav>
-        <main class="container">
-            <h1>Cliente</h1>
-            <form th:action="@{/clientes}" 
-                    method="POST"
-                    th:object="${cliente}">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
 
+    <main class="container my-5">
+        <!-- Título centralizado e com destaque -->
+        <div class="text-center mb-4">
+            <h1>Cadastre-se no Nutriweb</h1>
+            <p>Preencha suas informações para criar uma conta e começar sua jornada de nutrição.</p>
+        </div>
+
+        <!-- Formulário com borda e espaçamento -->
+        <div class="card p-4 shadow-sm">
+            <form th:action="@{/clientes}" method="POST" th:object="${cliente}">
                 <input type="hidden" th:field="*{id}">
 
-
-                <div class="form-group">
-                    <label for="txtnome">Nome</label>
-                    <input id="txtnome"
-                        th:field="*{nome}"
-                        class="form-control"
-                        type="text">
+                <div class="form-group mb-3">
+                    <label for="txtnome" class="form-label">Nome</label>
+                    <input id="txtnome" th:field="*{nome}" class="form-control" type="text" placeholder="Digite seu nome completo" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtendereco">Endereço</label>
-                    <input id="txtendereco"
-                        th:field="*{endereco}"
-                        class="form-control"
-                        type="text">
+                <div class="form-group mb-3">
+                    <label for="txtendereco" class="form-label">Endereço</label>
+                    <input id="txtendereco" th:field="*{endereco}" class="form-control" type="text" placeholder="Digite seu endereço" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtendereco">Data de Nascimento</label>
-                    <input id="date" type="date"
-                        th:field="*{dataNascimento}"
-                        class="form-select"
-                        />
+                <div class="form-group mb-3">
+                    <label for="date" class="form-label">Data de Nascimento</label>
+                    <input id="date" type="date" th:field="*{dataNascimento}" class="form-control" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtcidade">Cidade</label>
-                    <select class="form-select" th:field="*{cidade}">
+                <div class="form-group mb-4">
+                    <label for="txtcidade" class="form-label">Cidade</label>
+                    <select id="txtcidade" class="form-select" th:field="*{cidade}" required>
+                        <option value="" disabled selected>Selecione sua cidade</option>
                         <option th:each="umaCidade : ${listaCidades}"
                                 th:text="${umaCidade.nome}"
                                 th:value="${umaCidade.id}">
@@ -47,18 +42,11 @@
                     </select>
                 </div>
 
-                <p></p>
-                <button type="submit" 
-                class="form-control">Enviar</button>
-                
-
+                <button type="submit" class="btn btn-success w-100">Cadastrar</button>
             </form>
+        </div>
+    </main>
 
-
-        </main>
-        
-
-
-        <div th:include="layout :: footer">(footer)</div>
-    </body>
+    <footer th:include="layout :: footer"></footer>
+</body>
 </html>
