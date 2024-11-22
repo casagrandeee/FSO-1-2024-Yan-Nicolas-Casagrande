@@ -6,12 +6,17 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import br.univille.fsoweb20242yan.entity.Cidade;
+import br.univille.fsoweb20242yan.entity.Produto;
 import br.univille.fsoweb20242yan.service.CidadeService;
-
+import br.univille.fsoweb20242yan.service.ProdutoService;
 @Component
 public class Startaup {
+
     @Autowired
     private CidadeService serviceCidade;
+
+    @Autowired
+    private ProdutoService serviceProduto;
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event){
@@ -50,5 +55,20 @@ public class Startaup {
         antagorda.setNome("Anta Gorda");
         antagorda.setEstado("Rio Grande do Sul");
         serviceCidade.save(antagorda);
+
+        var planobasico = new Produto();
+        planobasico.setDescricao("Plano Básico");
+        planobasico.setValor(39);
+        serviceProduto.save(planobasico);
+
+        var planopadrao = new Produto();
+        planopadrao.setDescricao("Plano Padrão");
+        planopadrao.setValor(59);
+        serviceProduto.save(planopadrao);
+
+        var planopremium = new Produto();
+        planopremium.setDescricao("Plano Premium");
+        planopremium.setValor(89);
+        serviceProduto.save(planopremium);
     }   
 }
