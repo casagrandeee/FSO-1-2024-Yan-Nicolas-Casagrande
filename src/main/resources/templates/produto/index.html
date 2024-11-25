@@ -2,53 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head th:include="layout :: htmlhead"></head>
     <body>
-        
         <nav th:replace="layout :: menu">(menu)</nav>
-        <main class="container">
-            <h1>Produtos</h1>
-            <a href="/produtos/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabelaprodutos">
-                <thead>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr th:each="umproduto : ${listaProdutos}">
-                        <td th:text="${umproduto.descricao}"></td>
-                        <td th:text="${umproduto.valor}"></td>
-                        <td>
-                            <a th:href="@{'/produtos/alterar/' + ${umproduto.id}}"
-                                class="btn btn-warning"
-                            >Alterar</a>
-                            <button
-                                class="btn btn-danger js-delete"
-                                th:data-id="${umproduto.id}"
-                            >Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <main class="container my-5">
+            <h1 class="text-center">Lista de Produtos</h1>
+            <a href="/produtos/novo" class="btn btn-success mb-4">Novo Produto</a>
+
+            <!-- Exibição dos produtos em cards -->
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="umproduto : ${listaProdutos}">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${umproduto.descricao}"></h5>
+                            <p class="card-text" th:text="'Valor: R$ ' + ${umproduto.valor}"></p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a th:href="@{'/produtos/alterar/' + ${umproduto.id}}" class="btn btn-warning btn-sm me-2">Alterar</a>
+                            <button class="btn btn-danger btn-sm js-delete" th:data-id="${umproduto.id}">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
-        
-        <div th:include="layout :: footer">(footer)</div>
+
+        <footer th:replace="layout :: footer"></footer>
         <script th:src="@{/scriptproduto.js}"></script>
     </body>
 </html>
-<div class="modal" tabindex="-1" id="modalproduto">
+
+<!-- Modal de exclusão -->
+<div class="modal fade" tabindex="-1" id="modalproduto">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Excluir produto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Produto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Confirma a exclusão deste produto?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Confirma a exclusão do produto?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-          <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>

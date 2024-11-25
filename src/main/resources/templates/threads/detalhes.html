@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container mt-5">
+        <h1 th:text="${thread.titulo}"></h1>
+        <h2>Comentários:</h2>
+        <ul>
+            <li th:each="comentario : ${thread.comentarios}" th:text="${comentario.conteudo}"></li>
+        </ul>
+        <form th:action="@{'/comentarios'}" method="post">
+            <input type="hidden" th:value="${thread.id}" name="threadId">
+            <div class="mb-3">
+                <label for="conteudo" class="form-label">Novo Comentário</label>
+                <textarea id="conteudo" class="form-control" name="conteudo" rows="3" placeholder="Escreva seu comentário" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Comentário</button>
+        </form>
+    </main>
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

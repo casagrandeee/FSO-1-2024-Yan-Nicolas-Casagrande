@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.univille.fsoweb20242yan.entity.Cidade;
 import br.univille.fsoweb20242yan.repository.CidadeRepository;
 import br.univille.fsoweb20242yan.service.CidadeService;

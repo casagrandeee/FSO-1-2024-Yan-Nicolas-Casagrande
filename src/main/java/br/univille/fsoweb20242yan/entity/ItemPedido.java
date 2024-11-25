@@ -10,36 +10,36 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ItemPedido {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int quantidade;
     private float valor;
 
-    @ManyToOne(cascade= {CascadeType.REFRESH, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.MERGE})
     private Produto produto;
 
-    public Produto geProduto(){
+    public Produto getProduto() {
         return produto;
     }
-    public void setProduto(Produto produto){
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
-    public long getId(){
+    public long getId() {
         return id;
     }
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
-    public int getQuantidade(){
+    public int getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(int quantidade){
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    public float getValor(){
+    public float getValor() {
         return valor;
     }
-    public void setValor(float valor){
+    public void setValor(float valor) {
         this.valor = valor;
     }
 }

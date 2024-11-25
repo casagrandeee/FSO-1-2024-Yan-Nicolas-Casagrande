@@ -7,48 +7,89 @@
     <main class="container my-5">
         <!-- Título centralizado e com destaque -->
         <div class="text-center mb-4">
-            <h1>Cadastre-se no Nutriweb</h1>
-            <p>Preencha suas informações para criar uma conta e começar sua jornada de nutrição.</p>
+            <h1 th:text="${modo == 'cadastro' ? 'Cadastre-se no Nutriweb' : 'Login no Nutriweb'}"></h1>
+            <p th:text="${modo == 'cadastro' 
+                ? 'Preencha suas informações para criar uma conta e começar sua jornada de nutrição.' 
+                : 'Acesse sua conta para interagir e aproveitar todas as funcionalidades.'}"></p>
         </div>
 
-        <!-- Formulário com borda e espaçamento -->
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li th:if="${modo == 'cadastro'}" class="breadcrumb-item"><a href="/clientes">Clientes</a></li>
+                <li class="breadcrumb-item active" th:text="${modo == 'cadastro' ? 'Cadastro' : 'Login'}" aria-current="page"></li>
+            </ol>
+        </nav>
+
+        <!-- Mensagens de Sucesso/Erro -->
+        <div th:if="${mensagemSucesso}" class="alert alert-success" role="alert">
+            <p th:text="${mensagemSucesso}"></p>
+        </div>
+        <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <!-- Formulário -->
         <div class="card p-4 shadow-sm">
-            <form th:action="@{/clientes}" method="POST" th:object="${cliente}">
-                <input type="hidden" th:field="*{id}">
-
-                <div class="form-group mb-3">
-                    <label for="txtnome" class="form-label">Nome</label>
-                    <input id="txtnome" 
-                        th:field="*{nome}" 
-                        class="form-control" 
-                        type="text" placeholder="Digite seu nome completo" required>
+            <form th:action="${modo == 'cadastro' ? '/clientes/cadastro' : '/login'}" method="POST" th:object="${cliente}">
+                <div th:if="${modo == 'cadastro'}">
+                    <div class="form-group mb-3">
+                        <label for="txtnome" class="form-label">Nome</label>
+                        <input id="txtnome" 
+                               th:field="*{nome}" 
+                               class="form-control" 
+                               type="text" placeholder="Digite seu nome completo" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="txtendereco" class="form-label">Endereço</label>
+                        <input id="txtendereco" th:field="*{endereco}" class="form-control" type="text" placeholder="Digite seu endereço" required>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="txtendereco" class="form-label">Endereço</label>
-                    <input id="txtendereco" th:field="*{endereco}" class="form-control" type="text" placeholder="Digite seu endereço" required>
+                    <label for="email" class="form-label">E-mail</label>
+                    <input id="email" 
+                           th:field="*{email}" 
+                           class="form-control" 
+                           type="email" placeholder="Digite seu e-mail" required>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="date" class="form-label">Data de Nascimento</label>
-                    <input id="date" type="date" th:field="*{dataNascimento}" class="form-control" required>
+                    <label for="senha" class="form-label">Senha</label>
+                    <input id="senha" 
+                           th:field="*{senha}" 
+                           class="form-control" 
+                           type="password" placeholder="Digite sua senha" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtcidade">Cidade</label>
-                    <select class="form-select" th:field="*{cidade}">
-                        <option th:each="umaCidade : ${listaCidades}"
-                                th:text="${umaCidade.nome}"
-                                th:value="${umaCidade.id}">
-
-                        </option>
-                        
-                    </select>
+                <!-- Campos adicionais apenas no cadastro -->
+                <div th:if="${modo == 'cadastro'}">
+                    <div class="form-group mb-3">
+                        <label for="date" class="form-label">Data de Nascimento</label>
+                        <input id="date" type="date" th:field="*{dataNascimento}" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="txtcidade" class="form-label">Cidade</label>
+                        <select class="form-select" th:field="*{cidade}" required>
+                            <option value="" disabled selected>Selecione uma cidade</option>
+                            <option th:each="umaCidade : ${listaCidades}"
+                                    th:text="${umaCidade.nome}"
+                                    th:value="${umaCidade.id}">
+                            </option>
+                        </select>
+                    </div>
                 </div>
-                <br>
 
-                <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                <button type="submit" class="btn btn-success w-100" 
+                        th:text="${modo == 'cadastro' ? 'Cadastrar' : 'Entrar'}"></button>
             </form>
+        </div>
+
+        <!-- Link para alternar entre login e cadastro -->
+        <div class="text-center mt-4">
+            <p th:if="${modo == 'cadastro'}">Já possui uma conta? <a th:href="@{/login}">Faça login aqui</a></p>
+            <p th:if="${modo != 'cadastro'}">Não possui uma conta? <a th:href="@{/clientes/cadastro}">Cadastre-se aqui</a></p>
         </div>
     </main>
 

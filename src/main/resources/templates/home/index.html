@@ -7,10 +7,10 @@
 
     <main class="container mt-5">
         <!-- Banner Inicial -->
-        <section class="banner-section">
+        <section class="banner-section text-center position-relative">
             <div class="overlay">
-                <img th:src="@{/img/logonutriweb.png}" alt="Nutriweb Logo" class="logo-banner">
-                <h2 class="banner-text">Transforme sua vida com uma alimentação saudável e balanceada!</h2>
+                <img th:src="@{/img/logonutriweb.png}" alt="Nutriweb Logo" class="logo-banner img-fluid mb-3">
+                <h2 class="banner-text text-light bg-success p-3 rounded-pill shadow-sm">Transforme sua vida com uma alimentação saudável e balanceada!</h2>
             </div>
         </section>
 
@@ -27,53 +27,28 @@
             <h2 class="text-center" style="color: #4CAF50;">Funcionalidades Principais</h2>
             <div class="row mt-4">
                 <div class="col-md-6 mb-4">
-                    <div class="p-4" style="background-color: #FFF3CD; border-radius: 8px;">
-                        <h3 style="color: #856404;">📊 Relatórios Detalhados</h3>
+                    <div class="p-4 bg-warning text-dark rounded shadow-sm">
+                        <h3>📊 Relatórios Detalhados</h3>
                         <p>Monitore seu progresso com relatórios diários, semanais e mensais, com análise de nutrientes e calorias consumidas.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="p-4" style="background-color: #D1ECF1; border-radius: 8px;">
-                        <h3 style="color: #0C5460;">🍲 Receitas Personalizadas</h3>
+                    <div class="p-4 bg-info text-light rounded shadow-sm">
+                        <h3>🍲 Receitas Personalizadas</h3>
                         <p>Descubra receitas pensadas especialmente para você, alinhadas com suas preferências alimentares e metas.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="p-4" style="background-color: #D4EDDA; border-radius: 8px;">
-                        <h3 style="color: #155724;">👥 Comunidade Nutriweb</h3>
+                    <div class="p-4 bg-success text-light rounded shadow-sm">
+                        <h3>👥 Comunidade Nutriweb</h3>
                         <p>Engaje-se com outros usuários em nosso fórum, compartilhe dicas, tire dúvidas e receba apoio na sua jornada de saúde.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="p-4" style="background-color: #F8D7DA; border-radius: 8px;">
-                        <h3 style="color: #721C24;">📅 Plano Alimentar</h3>
+                    <div class="p-4 bg-danger text-light rounded shadow-sm">
+                        <h3>📅 Plano Alimentar</h3>
                         <p>Crie e ajuste seu plano alimentar de acordo com suas necessidades, com orientação nutricional para cada refeição.</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Depoimentos -->
-        <section class="mt-5 text-center">
-            <h2 style="color: #4CAF50;">O que nossos usuários estão dizendo</h2>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <blockquote class="blockquote p-3" style="background-color: #f9f9f9; border-left: 4px solid #4CAF50;">
-                        <p>“O Nutriweb me ajudou a transformar minha alimentação e melhorar meu bem-estar!”</p>
-                        <footer class="blockquote-footer">Camila S.</footer>
-                    </blockquote>
-                </div>
-                <div class="col-md-4">
-                    <blockquote class="blockquote p-3" style="background-color: #f9f9f9; border-left: 4px solid #4CAF50;">
-                        <p>“Adoro as receitas personalizadas! São práticas e muito saudáveis.”</p>
-                        <footer class="blockquote-footer">Lucas R.</footer>
-                    </blockquote>
-                </div>
-                <div class="col-md-4">
-                    <blockquote class="blockquote p-3" style="background-color: #f9f9f9; border-left: 4px solid #4CAF50;">
-                        <p>“O fórum é incrível para trocar experiências e aprender com outros usuários.”</p>
-                        <footer class="blockquote-footer">Ana P.</footer>
-                    </blockquote>
                 </div>
             </div>
         </section>
@@ -82,7 +57,7 @@
         <section class="text-center mt-5">
             <h2 style="color: #4CAF50;">Junte-se à nossa comunidade!</h2>
             <p class="lead">Comece sua jornada para uma vida mais saudável com o Nutriweb</p>
-            <a href="#" class="btn btn-lg btn-primary" th:href="@{/clientes/cadastro}" style="background-color: #4CAF50; border-color: #4CAF50;">Cadastre-se gratuitamente</a>
+            <a href="#" class="btn btn-lg btn-success shadow" th:href="@{/clientes/cadastro}">Cadastre-se gratuitamente</a>
         </section>
     </main>
 

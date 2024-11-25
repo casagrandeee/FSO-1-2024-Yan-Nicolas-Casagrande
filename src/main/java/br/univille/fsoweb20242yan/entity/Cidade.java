@@ -13,7 +13,6 @@ public class Cidade {
     private String nome;
     private String estado;
 
-    @Override
     public String toString(){
         return getNome();
     }
@@ -35,5 +34,5 @@ public class Cidade {
     }
     public void setEstado(String estado) {
         this.estado = estado;
-    }
+    } 
 }

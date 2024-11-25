@@ -11,6 +11,7 @@ import br.univille.fsoweb20242yan.service.ProdutoService;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
+
     @Autowired
     private ProdutoRepository repository;
     @Override

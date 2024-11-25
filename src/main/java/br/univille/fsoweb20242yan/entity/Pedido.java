@@ -47,5 +47,4 @@ public class Pedido {
     public void setData(Date data) {
         this.data = data;
     }
-    
 }

@@ -30,10 +30,13 @@ public class PedidoController {
         return new ModelAndView("pedido/index",
                 "listaPedidos",listaPedidos);
     }
+
     @GetMapping("/novo")
     public ModelAndView novo(){
         var pedido = new Pedido();
+
         var listaProdutos = produtoService.getAll();
+
         HashMap<String,Object> dados = 
             new HashMap<>();
         dados.put("pedido",pedido);
@@ -42,49 +45,59 @@ public class PedidoController {
         
         return new ModelAndView("pedido/form", 
                     dados);
+
     }
     @PostMapping(params = "incitem")
     public ModelAndView incluirItem(Pedido pedido, 
                 ItemPedido novoItem){
         pedido.getItens().add(novoItem);
+
         var listaProdutos = produtoService.getAll();
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("pedido",pedido);
         dados.put("novoItem", new ItemPedido());
         dados.put("listaProdutos",listaProdutos);
+
         return new ModelAndView("pedido/form",dados);
     }
 
-    @PostMapping(params = "removeitem")
-    public ModelAndView removerItem(@RequestParam("removeitem") int index, 
-                                Pedido pedido){
-        pedido.getItens().remove(index);
-        var listaProdutos = produtoService.getAll();
-        HashMap<String,Object> dados = 
-            new HashMap<>();
-        dados.put("pedido",pedido);
-        dados.put("novoItem", new ItemPedido());
-        dados.put("listaProdutos",listaProdutos);
-        return new ModelAndView("pedido/form",dados);
-    }
-
-    @PostMapping
+    @PostMapping(params = "save")
     public ModelAndView save(Pedido pedido){
         service.save(pedido);
         return new ModelAndView("redirect:/pedidos");
     }
+
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
         var pedido = service.getById(id);
+
         var listaProdutos = produtoService.getAll();
+
         HashMap<String,Object> dados = 
             new HashMap<>();
         dados.put("pedido",pedido);
         dados.put("novoItem", new ItemPedido());
         dados.put("listaProdutos",listaProdutos);
         
+
         return new ModelAndView("pedido/form", dados);
     }
+    @PostMapping(params = "removeitem")
+    public ModelAndView removerItem(@RequestParam("removeitem") int index, 
+                                Pedido pedido){
+        pedido.getItens().remove(index);
+
+        var listaProdutos = produtoService.getAll();
+
+        HashMap<String,Object> dados = 
+            new HashMap<>();
+        dados.put("pedido",pedido);
+        dados.put("novoItem", new ItemPedido());
+        dados.put("listaProdutos",listaProdutos);
+
+        return new ModelAndView("pedido/form",dados);
+    }
+
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id){
         var pedido = service.getById(id);

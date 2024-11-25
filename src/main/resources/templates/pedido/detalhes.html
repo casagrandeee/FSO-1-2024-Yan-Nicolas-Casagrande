@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container mt-5">
+        <h1>Detalhes do Pedido</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Informações do Pedido</h5>
+                <p><strong>Data do Pedido:</strong> <span th:text="${pedido.data}"></span></p>
+                <p><strong>Cliente:</strong> <span th:text="${pedido.cliente.nome}"></span></p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Itens do Pedido</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${pedido.itens}">
+                            <td th:text="${item.produto.descricao}"></td>
+                            <td th:text="${item.quantidade}"></td>
+                            <td th:text="${item.valor}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <a href="/pedidos" class="btn btn-secondary mt-3">Voltar</a>
+    </main>
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

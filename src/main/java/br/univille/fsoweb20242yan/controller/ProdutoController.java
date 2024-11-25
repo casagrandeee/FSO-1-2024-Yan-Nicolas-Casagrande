@@ -23,33 +23,38 @@ public class ProdutoController {
     public ModelAndView index(){
         var listaProdutos = service.getAll();
         return new ModelAndView("produto/index",
-        "listaProdutos", listaProdutos);
+                "listaProdutos",listaProdutos);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo(){
         var produto = new Produto();
 
-        HashMap<String,Object> dados =
+        HashMap<String,Object> dados = 
             new HashMap<>();
-        dados.put("produto", produto);
+        dados.put("produto",produto);
         
-        return new ModelAndView("produto/form",
+        return new ModelAndView("produto/form", 
                     dados);
+
     }
     @PostMapping
     public ModelAndView save(Produto produto){
         service.save(produto);
         return new ModelAndView("redirect:/produtos");
     }
+
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
         var produto = service.getById(id);
+
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("produto",produto);
         
+
         return new ModelAndView("produto/form", dados);
     }
+
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id){
         var produto = service.getById(id);
@@ -58,5 +63,5 @@ public class ProdutoController {
         }
         return new ModelAndView("redirect:/produtos");
     }
-    
+
 }

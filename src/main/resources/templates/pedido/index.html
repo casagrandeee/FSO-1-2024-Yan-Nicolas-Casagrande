@@ -6,28 +6,25 @@
         <nav th:replace="layout :: menu">(menu)</nav>
         <main class="container">
             <h1>Pedidos</h1>
-            <a href="/pedidos/novo" class="btn btn-primary">Novo</a>
-            <table class="table" id="tabelapedidos">
-                <thead>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr th:each="umpedido : ${listaPedidos}">
-                        <td th:text="${umpedido.data}"></td>
-                        <td>
-                            <a th:href="@{'/pedidos/alterar/' + ${umpedido.id}}"
-                                class="btn btn-warning"
-                            >Alterar</a>
-                            <button
-                                class="btn btn-danger js-delete"
-                                th:data-id="${umpedido.id}"
-                            >Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <a href="/pedidos/novo" class="btn btn-primary mb-3">Novo Pedido</a>
+            <table class="table table-striped table-hover" id="tabelapedidos">
+              <thead class="table-dark">
+                  <tr>
+                      <th>Data</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="umpedido : ${listaPedidos}">
+                      <td th:text="${umpedido.data}"></td>
+                      <td>
+                          <a th:href="@{'/pedidos/' + ${umpedido.id}}" class="btn btn-info btn-sm">Ver Detalhes</a>
+                          <a th:href="@{'/pedidos/alterar/' + ${umpedido.id}}" class="btn btn-warning btn-sm">Alterar</a>
+                          <button class="btn btn-danger btn-sm js-delete" th:data-id="${umpedido.id}">Excluir</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
         </main>
         
         <div th:include="layout :: footer">(footer)</div>

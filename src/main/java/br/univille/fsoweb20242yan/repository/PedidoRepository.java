@@ -7,6 +7,6 @@ import br.univille.fsoweb20242yan.entity.Pedido;
 
 @Repository
 public interface PedidoRepository 
-    extends JpaRepository<Pedido, Long>{
-
+    extends JpaRepository<Pedido,Long>{
+    
 }

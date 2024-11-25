@@ -2,34 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head th:include="layout :: htmlhead"></head>
     <body>
-        
         <nav th:replace="layout :: menu">(menu)</nav>
-        <main class="container">
-            <h1>Produto</h1>
-            <form th:action="@{/produtos}" 
-                    method="POST"
-                    th:object="${produto}">
-                <input type="hidden" th:field="*{id}">
-                <div class="form-group">
-                    <label for="txtdescricao">Descrição</label>
-                    <input id="txtdescricao"
-                        th:field="*{descricao}"
-                        class="form-control"
-                        type="text">
-                </div>
-                <div class="form-group">
-                    <label for="txtvalor">Valor</label>
-                    <input id="txtvalor"
-                        th:field="*{valor}"
-                        class="form-control"
-                        type="text">
-                </div>
-                <button type="submit" 
-                class="form-control">Enviar</button>
-                
-            </form>
+        <main class="container my-5">
+            <h1 class="text-center">Cadastro de Produto</h1>
+            <div class="card p-4 shadow-sm">
+                <form th:action="@{/produtos/salvar}" method="POST" th:object="${produto}">
+                    <input type="hidden" th:field="*{id}">
+                    
+                    <div class="form-group mb-3">
+                        <label for="txtdescricao" class="form-label">Descrição</label>
+                        <input id="txtdescricao"
+                               th:field="*{descricao}"
+                               class="form-control"
+                               type="text"
+                               placeholder="Digite a descrição do produto"
+                               required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="txtvalor" class="form-label">Valor (R$)</label>
+                        <input id="txtvalor"
+                               th:field="*{valor}"
+                               class="form-control"
+                               type="number"
+                               step="0.01"
+                               placeholder="Digite o valor do produto"
+                               required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Salvar Produto</button>
+                </form>
+            </div>
         </main>
-        
-        <div th:include="layout :: footer">(footer)</div>
+        <footer th:replace="layout :: footer"></footer>
     </body>
 </html>

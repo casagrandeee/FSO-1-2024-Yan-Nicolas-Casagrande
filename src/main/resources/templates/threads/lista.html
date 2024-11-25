@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container mt-5">
+        <h1 class="text-center">Lista de Threads</h1>
+        <a href="/threads/nova" class="btn btn-success mb-4">Criar Nova Thread</a>
+
+        <!-- Lista de Threads -->
+        <div class="threads-feed">
+            <div class="card mb-4 shadow-sm" th:each="thread : ${threads}">
+                <div class="card-body">
+                    <!-- Cabeçalho da Thread -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 th:text="${thread.titulo}" class="mb-0"></h5>
+                        <small class="text-muted" th:text="'Por: ' + ${thread.cliente.nome}"></small>
+                    </div>
+                    <small class="text-muted" th:text="'Criada em: ' + ${#dates.format(thread.dataCriacao, 'dd/MM/yyyy HH:mm')}"></small>
+                    
+                    <!-- Corpo da Thread -->
+                    <p class="mt-3" th:text="${thread.descricao}"></p>
+
+                    <!-- Anexos -->
+                    <div th:if="${thread.anexos.size() > 0}" class="mt-3">
+                        <h6>Anexos:</h6>
+                        <ul>
+                            <li th:each="anexo : ${thread.anexos}">
+                                <a th:href="@{'/uploads/' + ${anexo}}" th:text="${anexo}"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Rodapé da Thread -->
+                    <div class="mt-4">
+                        <span th:text="'Comentários: ' + ${thread.comentarios.size()}"></span>
+                        <a th:href="@{'/threads/' + ${thread.id}}" class="btn btn-primary btn-sm float-end">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>

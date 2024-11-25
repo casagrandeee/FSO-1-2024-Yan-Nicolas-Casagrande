@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container mt-5">
+        <h1>Histórico de Pedidos</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data do Pedido</th>
+                    <th>Cliente</th>
+                    <th>Quantidade de Itens</th>
+                    <th>Valor Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${listaPedidos}">
+                    <td th:text="${pedido.data}"></td>
+                    <td th:text="${pedido.cliente.nome}"></td>
+                    <td th:text="${pedido.itens.size()}"></td>
+                    <td th:text="${pedido.itens.stream().mapToDouble(i -> i.valor * i.quantidade).sum()}"></td>
+                    <td>
+                        <a th:href="@{'/pedidos/' + ${pedido.id}}" class="btn btn-info btn-sm">Ver Detalhes</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-secondary mt-3">Voltar</a>
+    </main>
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>
