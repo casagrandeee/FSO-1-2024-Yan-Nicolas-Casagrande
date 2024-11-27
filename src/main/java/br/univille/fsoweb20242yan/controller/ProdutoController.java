@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.Produto;
@@ -62,6 +63,26 @@ public class ProdutoController {
             service.delete(id);
         }
         return new ModelAndView("redirect:/produtos");
+    }
+    //exibir o catálogo de produtos
+    @GetMapping("/loja")
+    public ModelAndView exibirLoja() {
+        var produtos = service.getAll();
+        return new ModelAndView("loja/index", "produtos", produtos);
+    }
+    //rota para filtrar produtos
+    @GetMapping("/loja/filtrar")
+    public ModelAndView filtrar(@RequestParam("categoria") String categoria,
+                             @RequestParam("precoMin") float precoMin,
+                             @RequestParam("precoMax") float precoMax) {
+        var produtos = service.filtrarPorCategoriaEPreco(categoria, precoMin, precoMax);
+        return new ModelAndView("loja/index", "produtos", produtos);
+    }
+    //para exibir os detalhes de um produto
+    @GetMapping("/loja/produto/{id}")
+    public ModelAndView detalhesProduto(@PathVariable("id") long id) {
+        var produto = service.getById(id);
+        return new ModelAndView("loja/detalhes", "produto", produto);
     }
 
 }

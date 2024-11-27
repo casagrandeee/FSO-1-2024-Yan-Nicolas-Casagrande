@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        
+        <nav th:replace="layout :: menu">(menu)</nav>
+        <main class="container">
+            <h1>Detalhes do Produto</h1>
+
+    <div class="produto-detalhes">
+        <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
+        <h2 th:text="${produto.descricao}"></h2>
+        <p th:text="${produto.detalhes}"></p>
+        <p>Preço: R$ <span th:text="${produto.valor}"></span></p>
+        <a href="/loja" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>

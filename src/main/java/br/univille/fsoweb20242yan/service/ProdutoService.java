@@ -9,4 +9,7 @@ public interface ProdutoService {
     Produto save(Produto produto);
     Produto delete(long id);
     Produto getById(long id);
+    List<Produto> filtrarPorCategoriaEPreco(String categoria, float precoMin, float precoMax);
+    
+    
 }

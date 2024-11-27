@@ -36,5 +36,5 @@ public class PedidoServiceImpl implements PedidoService{
     public Pedido getById(long id) {
         return repository.getById(id);
     }
-    
+
 }

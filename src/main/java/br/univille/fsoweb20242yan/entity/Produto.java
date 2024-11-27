@@ -1,5 +1,6 @@
 package br.univille.fsoweb20242yan.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,12 @@ public class Produto {
     private long id;
     private String descricao;
     private float valor;
+    private String categoria;
+    private String imagemUrl;
+    @Column(length = 2000)
+    private String detalhes;
 
+    
     public long getId() {
         return id;
     }
@@ -30,5 +36,28 @@ public class Produto {
     }
     public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
+    }
+
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
     }
 }

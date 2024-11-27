@@ -14,6 +14,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Autowired
     private ProdutoRepository repository;
+
     @Override
     public List<Produto> getAll() {
         return repository.findAll();
@@ -34,6 +35,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public Produto getById(long id) {
         return repository.getById(id);
+    }
+
+    @Override
+    public List<Produto> filtrarPorCategoriaEPreco(String categoria, float precoMin, float precoMax) {
+        return repository.findByCategoriaAndValorBetween(categoria, precoMin, precoMax);
     }
     
 }

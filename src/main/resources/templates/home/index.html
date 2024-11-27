@@ -1,67 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:include="layout :: htmlhead"></head>
-<body>
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        
+        <nav th:replace="layout :: menu">(menu)</nav>
+        <main class="container">
+            <h1>NUTRIWEB</h1>
+        </main>
+        
 
-    <nav th:replace="layout :: menu">(menu)</nav>
 
-    <main class="container mt-5">
-        <!-- Banner Inicial -->
-        <section class="banner-section text-center position-relative">
-            <div class="overlay">
-                <img th:src="@{/img/logonutriweb.png}" alt="Nutriweb Logo" class="logo-banner img-fluid mb-3">
-                <h2 class="banner-text text-light bg-success p-3 rounded-pill shadow-sm">Transforme sua vida com uma alimentação saudável e balanceada!</h2>
-            </div>
-        </section>
-
-        <!-- Sobre o Site -->
-        <section class="mt-5 text-center">
-            <h2 style="color: #4CAF50;">O que é o Nutriweb?</h2>
-            <p style="font-size: 1.2rem; color: #666;">
-                O Nutriweb é uma plataforma inovadora que oferece ferramentas para auxiliar você a atingir suas metas nutricionais e de bem-estar. Seja qual for o seu objetivo - perder peso, ganhar massa muscular ou simplesmente melhorar sua alimentação - nós estamos aqui para ajudar.
-            </p>
-        </section>
-
-        <!-- Funcionalidades -->
-        <section class="mt-5">
-            <h2 class="text-center" style="color: #4CAF50;">Funcionalidades Principais</h2>
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <div class="p-4 bg-warning text-dark rounded shadow-sm">
-                        <h3>📊 Relatórios Detalhados</h3>
-                        <p>Monitore seu progresso com relatórios diários, semanais e mensais, com análise de nutrientes e calorias consumidas.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="p-4 bg-info text-light rounded shadow-sm">
-                        <h3>🍲 Receitas Personalizadas</h3>
-                        <p>Descubra receitas pensadas especialmente para você, alinhadas com suas preferências alimentares e metas.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="p-4 bg-success text-light rounded shadow-sm">
-                        <h3>👥 Comunidade Nutriweb</h3>
-                        <p>Engaje-se com outros usuários em nosso fórum, compartilhe dicas, tire dúvidas e receba apoio na sua jornada de saúde.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="p-4 bg-danger text-light rounded shadow-sm">
-                        <h3>📅 Plano Alimentar</h3>
-                        <p>Crie e ajuste seu plano alimentar de acordo com suas necessidades, com orientação nutricional para cada refeição.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chamada para Ação -->
-        <section class="text-center mt-5">
-            <h2 style="color: #4CAF50;">Junte-se à nossa comunidade!</h2>
-            <p class="lead">Comece sua jornada para uma vida mais saudável com o Nutriweb</p>
-            <a href="#" class="btn btn-lg btn-success shadow" th:href="@{/clientes/cadastro}">Cadastre-se gratuitamente</a>
-        </section>
-    </main>
-
-    <footer th:replace="layout :: footer" class="mt-5"></footer>
-
-</body>
+        <div th:include="layout :: footer">(footer)</div>
+    </body>
 </html>
