@@ -8,4 +8,5 @@ public interface ClienteService {
     Cliente save(Cliente cliente);
     Cliente delete(long id);
     Cliente getById(long id);
+    Cliente getClienteLogado();
 }

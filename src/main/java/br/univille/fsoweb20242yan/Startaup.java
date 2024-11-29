@@ -56,9 +56,34 @@ public class Startaup {
         antagorda.setEstado("Rio Grande do Sul");
         serviceCidade.save(antagorda);
 
-        var nintendo = new Produto();
-        nintendo.setDescricao("Nintendo Switch");
-        nintendo.setValor(2000);
-        serviceProduto.save(nintendo);
+        var creatina = new Produto();
+        creatina.setDescricao("Creatina");
+        creatina.setValor(119);
+        serviceProduto.save(creatina);
+
+        var pretreino = new Produto();
+        pretreino.setDescricao("Pré-Treino");
+        pretreino.setValor(109);
+        serviceProduto.save(pretreino);
+
+        var termogenico = new Produto();
+        termogenico.setDescricao("Termogênico");
+        termogenico.setValor(79);
+        serviceProduto.save(termogenico);
+
+        var wheyprotein = new Produto();
+        wheyprotein.setDescricao("Whey Protein");
+        wheyprotein.setValor(139);
+        serviceProduto.save(wheyprotein);
+
+        var hipercalorico = new Produto();
+        hipercalorico.setDescricao("Hipercalórico");
+        hipercalorico.setValor(129);
+        serviceProduto.save(hipercalorico);
+
+        var multivitaminico = new Produto();
+        multivitaminico.setDescricao("Multivitamíco");
+        multivitaminico.setValor(39);
+        serviceProduto.save(multivitaminico);
     }   
 }

@@ -43,5 +43,11 @@ public class ClienteServiceImpl implements ClienteService{
             return retorno.get();
         return null;
     }
+
+    @Override
+    public Cliente getClienteLogado() {
+        // Implement the method logic here
+        return null;
+    }
     
 }

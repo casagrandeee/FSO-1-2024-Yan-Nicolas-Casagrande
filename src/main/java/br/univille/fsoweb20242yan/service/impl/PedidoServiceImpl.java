@@ -10,7 +10,7 @@ import br.univille.fsoweb20242yan.repository.PedidoRepository;
 import br.univille.fsoweb20242yan.service.PedidoService;
 
 @Service
-public class PedidoServiceImpl implements PedidoService{
+public class PedidoServiceImpl implements PedidoService {
 
     @Autowired
     private PedidoRepository repository;
@@ -27,14 +27,15 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Override
     public Pedido delete(long id) {
-        var pedido = getById(id);
-        repository.delete(pedido);
+        Pedido pedido = getById(id);
+        if (pedido != null) {
+            repository.delete(pedido);
+        }
         return pedido;
     }
 
     @Override
     public Pedido getById(long id) {
-        return repository.getById(id);
+        return repository.findById(id).orElse(null); //Retorna o pedido pelo ID
     }
-
 }

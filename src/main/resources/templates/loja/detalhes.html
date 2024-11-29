@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head th:include="layout :: htmlhead"></head>
-    <body>
-        
-        <nav th:replace="layout :: menu">(menu)</nav>
-        <main class="container">
-            <h1>Detalhes do Produto</h1>
-
-    <div class="produto-detalhes">
-        <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
-        <h2 th:text="${produto.descricao}"></h2>
-        <p th:text="${produto.detalhes}"></p>
-        <p>Preço: R$ <span th:text="${produto.valor}"></span></p>
-        <a href="/loja" class="btn btn-secondary">Voltar</a>
-    </div>
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+    <main class="container">
+        <h1>Detalhes do Produto</h1>
+        <div class="produto-detalhes">
+            <img th:src="${produto.imagemUrl}" alt="Imagem do Produto">
+            <h2 th:text="${produto.descricao}"></h2>
+            <p th:text="${produto.detalhes}"></p>
+            <p>Preço: R$ <span th:text="${produto.valor}"></span></p>
+            <p>Classificação média: <span th:text="${mediaNota}"></span>/5</p>
+            <a href="/loja" class="btn btn-secondary">Voltar</a>
+        </div>
+        <div class="avaliacoes">
+            <h3>Avaliações</h3>
+            <div th:each="avaliacao : ${avaliacoes}">
+                <p><strong th:text="${avaliacao.cliente.nome}"></strong> - Nota: <span th:text="${avaliacao.nota}"></span></p>
+                <p th:text="${avaliacao.comentario}"></p>
+            </div>
+        </div>
+        <div class="avaliar">
+            <h3>Avaliar Produto</h3>
+            <form action="/avaliacoes" method="POST">
+                <input type="hidden" name="produtoId" th:value="${produto.id}" />
+                <div class="mb-3">
+                    <label for="nota" class="form-label">Nota:</label>
+                    <select id="nota" name="nota" class="form-control" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="comentario" class="form-label">Comentário:</label>
+                    <textarea id="comentario" name="comentario" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

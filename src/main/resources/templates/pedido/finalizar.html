@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container mt-4">
+            <h1 class="mb-4">Finalizar Pedido</h1>
+            
+            <p><strong>Pedido ID:</strong> <span th:text="${pedido.id}"></span></p>
+
+            <form th:action="@{/pedidos/finalizar}" method="POST" th:object="${pedido}">
+
+                <input type="hidden" name="id" th:value="${pedido.id}"/>
+
+                <div class="mb-3">
+                    <label for="enderecoEntrega" class="form-label">Endereço de Entrega:</label>
+                    <input type="text" id="enderecoEntrega" name="enderecoEntrega" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="metodoPagamento" class="form-label">Método de Pagamento:</label>
+                    <select id="metodoPagamento" name="metodoPagamento" class="form-control" required>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Boleto">Boleto</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
+            </form>
+
+        </main>
+        
+        <footer th:replace="layout :: footer"></footer>
+
+    </body>
+</html>
