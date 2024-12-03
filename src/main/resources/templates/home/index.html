@@ -1,17 +1,172 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head th:include="layout :: htmlhead">
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-        
-        <nav th:replace="layout :: menu">(menu)</nav>
-        <main class="container">
-            <h1></h1>
-        </main>
-        
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriWeb - Início</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
 
+        .banner {
+            background: url('/img/foodd.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
 
-        <div th:include="layout :: footer">(footer)</div>
-    </body>
+        .banner h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    }
+
+    .banner p {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .sobre, .funcionalidades {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .funcionalidades-grid {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .funcionalidades-grid .btn {
+        padding: 10px 20px;
+        font-size: 1.1em;
+    }
+
+        .banner .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner .btn:hover {
+            background-color: #218838;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .section p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-group .btn {
+            margin: 0 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-group .btn:hover {
+            background-color: #00b318;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="banner">
+        <div>
+            <h1>Bem-vindo ao NutriWeb</h1>
+            <p>Gerencie sua nutrição com eficiência, controle seus pedidos e expanda seu negócio com facilidade.</p>
+            <a href="/clientes/novo" class="btn btn-success btn-lg">Cadastre-se Agora</a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="sobre">
+            <h2>Sobre o NutriWeb</h2>
+            <p>O NutriWeb é a solução ideal para profissionais e empreendedores no ramo de nutrição. Facilite o gerenciamento de clientes, produtos e pedidos com nossa plataforma moderna e intuitiva.</p>
+        </section>
+
+        <section class="section">
+            <h2>Funcionalidades</h2>
+            <p>Descubra como o NutriWeb pode otimizar o seu negócio:</p>
+            <div class="btn-group">
+                <a href="/clientes" class="btn">Gerenciar Clientes</a>
+                <a href="/produtos" class="btn">Ver Produtos</a>
+                <a href="/pedidos" class="btn">Gerenciar Pedidos</a>
+                <a href="/blog" class="btn">Acesse o Blog</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Comece Agora</h2>
+            <p>Cadastre-se e aproveite todos os recursos que o NutriWeb oferece.</p>
+            <div class="btn-group">
+                <a href="/clientes/novo" class="btn">Cadastrar-se</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; FSO-I - 2024 NUTRIWEB | Desenvolvido por Yan Nicolas Casagrande</p>
+    </footer>
+</body>
 </html>

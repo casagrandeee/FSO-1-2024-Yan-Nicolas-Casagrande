@@ -13,10 +13,10 @@ public class Produto {
     private long id;
     private String descricao;
     private float valor;
-    private String categoria;
     private String imagemUrl;
     @Column(length = 2000)
     private String detalhes;
+    private String categoria;
 
     
     public long getId() {
@@ -38,13 +38,6 @@ public class Produto {
         this.valor = valor;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public String getImagemUrl() {
         return imagemUrl;
     }
@@ -59,5 +52,13 @@ public class Produto {
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

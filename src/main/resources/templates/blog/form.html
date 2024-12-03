@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container">
+        <h1 th:text="${blog.id == null} ? 'Novo Post' : 'Alterar Post'"></h1>
+        <form th:action="@{/blog}" th:object="${blog}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="dataPublicacao">Data de Publicação</label>
+                <input type="date" id="dataPublicacao" th:field="*{dataPublicacao}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" th:field="*{titulo}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="conteudo">Conteúdo</label>
+                <textarea id="conteudo" th:field="*{conteudo}" class="form-control" rows="10" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </main>
+</body>
+</html>

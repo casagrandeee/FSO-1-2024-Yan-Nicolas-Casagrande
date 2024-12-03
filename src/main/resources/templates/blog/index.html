@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="layout :: htmlhead">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .post-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .post-title {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .post-date {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+        }
+        .post-content {
+            font-size: 1.1em;
+            margin-bottom: 16px;
+        }
+        .post-actions {
+            margin-top: 16px;
+        }
+        .post-comments {
+            margin-top: 16px;
+        }
+        .post-comments .comment {
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        .post-comments .comment strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .post-comments .comment span {
+            font-size: 0.9em;
+            color: #888;
+        }
+        .post-comments .comment p {
+            margin-bottom: 0;
+        }
+        .comment-form {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="layout :: menu"></nav>
+    <main class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 80vh;">
+        <h1>NUTRIBLOG</h1>
+        <a href="/blog/novo" class="btn btn-primary mb-4">Novo Post</a>
+        <div th:each="post : ${listaBlogs}" class="post-card w-100" style="max-width: 600px;">
+            <div class="post-title" th:text="${post.titulo}"></div>
+            <div class="post-date" th:text="${#dates.format(post.dataPublicacao, 'dd/MM/yyyy')}"></div>
+            <div class="post-content" th:text="${post.conteudo}"></div>
+            <div th:if="${post.imagemUrl}">
+                <img th:src="${post.imagemUrl}" class="img-fluid mt-3">
+            </div>
+            <div class="post-actions">
+                <form th:action="@{/blog/like/{id}(id=${post.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-success btn-sm">Like (<span th:text="${post.likes}"></span>)</button>
+                </form>
+                <form th:action="@{/blog/dislike/{id}(id=${post.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Dislike (<span th:text="${post.dislikes}"></span>)</button>
+                </form>
+                <a th:href="@{'/blog/alterar/' + ${post.id}}" class="btn btn-warning btn-sm">Alterar</a>
+                <a th:href="@{'/blog/delete/' + ${post.id}}" class="btn btn-danger btn-sm">Excluir</a>
+            </div>
+            <div class="post-comments">
+                <h5>Comentários</h5>
+                <div th:each="comentario : ${post.comentarios}" class="comment">
+                    <strong th:text="${comentario.autor}"></strong> 
+                    <span th:text="${#dates.format(comentario.dataComentario, 'dd/MM/yyyy HH:mm')}"></span>
+                    <p th:text="${comentario.conteudo}"></p>
+                </div>
+                <form th:action="@{/blog/comentar/{id}(id=${post.id})}" method="post" class="comment-form">
+                    <div class="form-group">
+                        <label for="autor">Autor</label>
+                        <input type="text" id="autor" name="autor" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="conteudo">Comentário</label>
+                        <textarea id="conteudo" name="conteudo" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Comentar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

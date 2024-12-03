@@ -5,8 +5,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import br.univille.fsoweb20242yan.entity.Blog;
 import br.univille.fsoweb20242yan.entity.Cidade;
 import br.univille.fsoweb20242yan.entity.Produto;
+import br.univille.fsoweb20242yan.service.BlogService;
 import br.univille.fsoweb20242yan.service.CidadeService;
 import br.univille.fsoweb20242yan.service.ProdutoService;
 @Component
@@ -18,8 +20,12 @@ public class Startaup {
     @Autowired
     private ProdutoService serviceProduto;
 
+    @Autowired
+    private BlogService blogService;
+
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event){
+        
         var jlle = new Cidade();
         jlle.setId(1);
         jlle.setNome("Joinville");
@@ -60,66 +66,86 @@ public class Startaup {
         creatina.setDescricao("Creatina");
         creatina.setValor(119);
         creatina.setImagemUrl("https://images.unsplash.com/photo-1693996045435-af7c48b9cafb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHdoZXklMjBwcm90ZWlufGVufDB8fDB8fHww");
+        creatina.setDetalhes("Suplemento essencial para aumento de força e desempenho físico.");
         serviceProduto.save(creatina);
 
         var pretreino = new Produto();
         pretreino.setDescricao("Pré-Treino");
         pretreino.setValor(109);
         pretreino.setImagemUrl("https://images.unsplash.com/photo-1704650311981-419f841421cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHdoZXklMjBwcm90ZWlufGVufDB8fDB8fHww");
+        pretreino.setDetalhes("Suplemento energético que melhora a performance durante os treinos.");
         serviceProduto.save(pretreino);
 
         var termogenico = new Produto();
         termogenico.setDescricao("Termogênico");
         termogenico.setValor(79);
         termogenico.setImagemUrl("https://plus.unsplash.com/premium_photo-1690534068749-524a21d89307?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fHN1cGxlbWVudG9zfGVufDB8fDB8fHww");
+        termogenico.setDetalhes("Produto que auxilia na queima de gordura e aumento do metabolismo.");
         serviceProduto.save(termogenico);
 
         var wheyprotein = new Produto();
         wheyprotein.setDescricao("Whey Protein");
         wheyprotein.setValor(139);
         wheyprotein.setImagemUrl("https://images.unsplash.com/photo-1704650311190-7eeb9c4f6e11?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdoZXklMjBwcm90ZWlufGVufDB8fDB8fHww");
+        wheyprotein.setDetalhes("Proteína em pó para ganho de massa muscular e recuperação.");
         serviceProduto.save(wheyprotein);
 
         var hipercalorico = new Produto();
         hipercalorico.setDescricao("Hipercalórico");
         hipercalorico.setValor(129);
         hipercalorico.setImagemUrl("https://plus.unsplash.com/premium_photo-1690291494818-068ed0f63c42?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2hleSUyMHByb3RlaW58ZW58MHx8MHx8fDA%3D");
+        hipercalorico.setDetalhes("Suplemento para ganho de peso e aumento de calorias na dieta.");
         serviceProduto.save(hipercalorico);
 
         var multivitaminico = new Produto();
         multivitaminico.setDescricao("Multivitamíco");
         multivitaminico.setValor(39);
         multivitaminico.setImagemUrl("https://plus.unsplash.com/premium_photo-1732689834566-a7c313f00478?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fG11bHRpdml0YW1pbmljb3xlbnwwfHwwfHx8MA%3D%3D");
+        multivitaminico.setDetalhes("Conjunto de vitaminas e minerais para suporte nutricional diário.");
         serviceProduto.save(multivitaminico);
 
         var bcaa = new Produto();
         bcaa.setDescricao("BCAA");
         bcaa.setValor(59);
         bcaa.setImagemUrl("https://images.unsplash.com/photo-1668440246511-539c5438518d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHN1cGxlbWVudG98ZW58MHx8MHx8fDA%3D");
+        bcaa.setDetalhes("Aminoácidos essenciais para recuperação muscular e redução da fadiga.");
         serviceProduto.save(bcaa);
 
         var glutamina = new Produto();
         glutamina.setDescricao("Glutamina");
         glutamina.setValor(79);
         glutamina.setImagemUrl("https://images.unsplash.com/photo-1659090340416-30dfd00978c7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHN1cGxlbWVudG98ZW58MHx8MHx8fDA%3D");
+        glutamina.setDetalhes("Suplemento que auxilia na recuperação e fortalecimento do sistema imunológico.");
         serviceProduto.save(glutamina);
 
         var omega3 = new Produto();
         omega3.setDescricao("Ômega 3");
         omega3.setValor(49);
         omega3.setImagemUrl("https://images.unsplash.com/photo-1687200266857-764ef12cfdd1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG9tZWdhJTIwM3xlbnwwfHwwfHx8MA%3D%3D");
+        omega3.setDetalhes("Fonte de ácidos graxos para saúde cardiovascular e cerebral.");
         serviceProduto.save(omega3);
 
         var balancaDePesarComida = new Produto();
         balancaDePesarComida.setDescricao("Balança de Pesar Comida");
         balancaDePesarComida.setValor(99);
         balancaDePesarComida.setImagemUrl("https://images.unsplash.com/photo-1557256611-210fcc4476d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFsYW4lQzMlQTdhJTIwZGUlMjBwZXNhciUyMGNvbWlkYXxlbnwwfHwwfHx8MA%3D%3D");
+        balancaDePesarComida.setDetalhes("Ferramenta precisa para medir alimentos e controlar a dieta.");
         serviceProduto.save(balancaDePesarComida);
 
         var garrafinhaTermica = new Produto();
         garrafinhaTermica.setDescricao("Garrafinha Térmica");
         garrafinhaTermica.setValor(29);
         garrafinhaTermica.setImagemUrl("https://plus.unsplash.com/premium_photo-1681154819809-b660a509e1ee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2FycmFmYSUyMHQlQzMlQTlybWljYXxlbnwwfHwwfHx8MA%3D%3D");
+        garrafinhaTermica.setDetalhes("Garrafa compacta para manter bebidas quentes ou frias.");
         serviceProduto.save(garrafinhaTermica);
-    }   
+        
+        var post = new Blog();
+        post.setTitulo("BEM-VINDO AO NUTRIWEB");
+        post.setConteudo("Este é o primeiro post do nosso blog. Fique ligado para mais novidades e dicas sobre nutrição!");
+        post.setLikes(0);
+        post.setDislikes(0);
+        blogService.save(post); 
+    
+    }         
+
 }

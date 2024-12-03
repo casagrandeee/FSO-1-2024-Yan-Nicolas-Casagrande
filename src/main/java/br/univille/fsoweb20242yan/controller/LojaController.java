@@ -25,14 +25,6 @@ public class LojaController {
         return new ModelAndView("loja/index", "produtos", produtos);
     }
 
-    @GetMapping("/filtrar")
-    public ModelAndView filtrar(@RequestParam("categoria") String categoria,
-                                 @RequestParam("precoMin") float precoMin,
-                                 @RequestParam("precoMax") float precoMax) {
-        List<Produto> produtos = service.filtrarPorCategoriaEPreco(categoria, precoMin, precoMax);
-        return new ModelAndView("loja/index", "produtos", produtos);
-    }
-
     @GetMapping("/produto")
     public ModelAndView detalhesProduto(@RequestParam("id") long id) {
         Produto produto = service.getById(id);
