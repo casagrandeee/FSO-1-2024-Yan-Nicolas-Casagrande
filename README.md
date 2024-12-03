@@ -11,10 +11,14 @@ NutriWeb é uma plataforma moderna e intuitiva para profissionais e empreendedor
 - **Loja**: Exiba um catálogo de produtos para os clientes, com detalhes e opção de compra.
 
 ## Estrutura do Projeto
-**Controladores da aplicação.**: src/main/java/br/univille/fsoweb20242yan/controller: 
+**Controladores da aplicação.**: src/main/java/br/univille/fsoweb20242yan/controller
+
 **Entidades JPA.**: src/main/java/br/univille/fsoweb20242yan/entity: 
+
 **Serviços da aplicação.**: src/main/java/br/univille/fsoweb20242yan/service:
-**Arquivos estáticos (CSS, JS, imagens).**: src/main/resources/static: 
+
+**Arquivos estáticos (CSS, JS, imagens).**: src/main/resources/static:
+
 **Templates Thymeleaf.**: src/main/resources/templates: 
 
 ## Tecnologias Utilizadas
