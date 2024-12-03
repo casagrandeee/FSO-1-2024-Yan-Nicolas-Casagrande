@@ -1,22 +1,85 @@
 :root {
     --primary-color: #4CAF50;
-    --secondary-color: #FFA500;
-    --text-color: #333;
-    --background-color: #F4F9F4;
+    --secondary-color: #FFA000; 
+    --background-color: #F5F5F5; 
+    --text-color: #333333;       
 }
+
 body {
-    background-color: var(--background-color);
+    background: linear-gradient(to bottom, var(--background-color), #E0E0E0);
     color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
+/* Navbar */
 .navbar {
     background-color: var(--primary-color);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
     color: #FFFFFF;
 }
+
+.navbar .nav-link:hover {
+    color: #DDDDDD;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+}
+
 .btn-primary {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
+    color: #FFFFFF;
 }
+
 .btn-primary:hover {
-    background-color: darken(var(--secondary-color), 10%);
+    background-color: #E59400;
+    border-color: #E59400;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #388E3C;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+}
+
+.form-label {
+    color: var(--primary-color);
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-title {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.produto-imagem {
+    width: 200px;        
+    height: 200px;       
+    object-fit: cover;
+    border-radius: 8px;
 }

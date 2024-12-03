@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.fsoweb20242yan.entity.ItemPedido;
 import br.univille.fsoweb20242yan.entity.Pedido;
+import br.univille.fsoweb20242yan.entity.Produto;
 import br.univille.fsoweb20242yan.service.PedidoService;
 import br.univille.fsoweb20242yan.service.ProdutoService;
 
@@ -143,5 +144,27 @@ public class PedidoController {
             return new ModelAndView("redirect:/pedidos");
         }
         return new ModelAndView("pedido/status", "pedido", pedido);
+    }
+
+    @PostMapping("/comprar")
+public ModelAndView comprarAgora(@RequestParam("produtoId") long produtoId) {
+    Produto produto = produtoService.getById(produtoId);
+    if (produto == null) {
+        return new ModelAndView("redirect:/loja");
+    }
+
+    Pedido pedido = new Pedido();
+    ItemPedido novoItem = new ItemPedido();
+    novoItem.setProduto(produto);
+    novoItem.setQuantidade(1);
+    novoItem.setValor(produto.getValor());
+    pedido.getItens().add(novoItem);
+
+    HashMap<String, Object> dados = new HashMap<>();
+    dados.put("pedido", pedido);
+    dados.put("novoItem", new ItemPedido());
+    dados.put("listaProdutos", produtoService.getAll());
+
+    return new ModelAndView("pedido/form", dados);
     }
 }

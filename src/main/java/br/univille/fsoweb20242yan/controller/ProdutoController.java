@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.univille.fsoweb20242yan.entity.Avaliacao;
 import br.univille.fsoweb20242yan.entity.Produto;
-import br.univille.fsoweb20242yan.service.AvaliacaoService;
 import br.univille.fsoweb20242yan.service.ProdutoService;
 
 @Controller
@@ -22,9 +19,6 @@ public class ProdutoController {
     
     @Autowired
     private ProdutoService service;
-
-    @Autowired
-    private AvaliacaoService avaliacaoService;
 
     @GetMapping
     public ModelAndView index(){
@@ -75,29 +69,6 @@ public class ProdutoController {
     public ModelAndView exibirLoja() {
         var produtos = service.getAll();
         return new ModelAndView("loja/index", "produtos", produtos);
-    }
-    //rota para filtrar produtos
-    @GetMapping("/loja/filtrar")
-    public ModelAndView filtrar(@RequestParam("categoria") String categoria,
-                             @RequestParam("precoMin") float precoMin,
-                             @RequestParam("precoMax") float precoMax) {
-        var produtos = service.filtrarPorCategoriaEPreco(categoria, precoMin, precoMax);
-        return new ModelAndView("loja/index", "produtos", produtos);
-    }
-
-    //para exibir os detalhes de um produto e buscar avaliações e media
-    @GetMapping("/loja/produto/{id}")
-    public ModelAndView detalhesProduto(@PathVariable("id") long id) {
-        var produto = service.getById(id);
-        var avaliacoes = avaliacaoService.findByProdutoId(id);
-        double mediaNota = avaliacoes.stream().mapToInt(Avaliacao::getNota).average().orElse(0.0);
-
-        HashMap<String, Object> dados = new HashMap<>();
-        dados.put("produto", produto);
-        dados.put("avaliacoes", avaliacoes);
-        dados.put("mediaNota", mediaNota);
-
-        return new ModelAndView("loja/detalhes", dados);
     }
 
 }
