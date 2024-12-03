@@ -7,7 +7,7 @@ NutriWeb é uma plataforma moderna e intuitiva para profissionais e empreendedor
 - **Gerenciamento de Clientes**: Cadastre, edite e exclua informações de clientes, incluindo nome, endereço, data de nascimento e cidade.
 - **Gerenciamento de Produtos**: Adicione, edite e exclua produtos, com detalhes como descrição, valor, imagem e categoria.
 - **Gerenciamento de Pedidos**: Crie, edite e finalize pedidos, incluindo itens, endereço de entrega e método de pagamento.
-- **Blog**: Publique posts no blog, com título, conteúdo, imagem e data de publicação. Os usuários podem comentar, curtir e descurtir os posts.
+- **Blog**: Publique posts no blog, com título, conteúdo e data de publicação. Os usuários podem comentar, curtir e descurtir os posts.
 - **Loja**: Exiba um catálogo de produtos para os clientes, com detalhes e opção de compra.
 
 ## Estrutura do Projeto
