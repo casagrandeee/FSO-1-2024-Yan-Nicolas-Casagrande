@@ -27,7 +27,7 @@ NutriWeb é uma plataforma moderna e intuitiva para profissionais e empreendedor
 ## Como Executar o Projeto
 
 **Clone o repositório:**
-git clone https://github.com/casagrandeee/nutriweb.git
+git clone https://github.com/casagrandeee/nutriweb.git](https://github.com/casagrandeee/FSO-1-2024-Yan-Nicolas-Casagrande
 cd nutriweb
 
 **Configure o banco de dados:**
